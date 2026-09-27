@@ -1,0 +1,569 @@
+{
+  "race": "Penrith Cup 1 - Flat Water",
+  "date": "2026-09-26",
+  "venue": "Penrith NSW",
+  "classes": {
+    "C1M": [
+      {
+        "bib": 2,
+        "name": "Tom Billaut",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 79.37,
+            "penalty": 2
+          },
+          {
+            "time": 82.01,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 1,
+        "name": "Timothy Anderson",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 81.41,
+            "penalty": 0
+          },
+          {
+            "time": 82.2,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 7,
+        "name": "William Casserley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 97.49,
+            "penalty": 4
+          },
+          {
+            "time": 98.92,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 9,
+        "name": "Oliver Eisenhammer",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 103.64,
+            "penalty": 4
+          },
+          {
+            "time": 109.17,
+            "penalty": 6
+          }
+        ]
+      },
+      {
+        "bib": 8,
+        "name": "Hugo Giles",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 115.9,
+            "penalty": 2
+          },
+          {
+            "time": 122.75,
+            "penalty": 52
+          }
+        ]
+      }
+    ],
+    "C1W": [
+      {
+        "bib": 12,
+        "name": "Lucy Casserley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 87.28,
+            "penalty": 0
+          },
+          {
+            "time": 89.97,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 98,
+        "name": "Lara Wiley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 87.53,
+            "penalty": 2
+          },
+          {
+            "time": 89.56,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 71,
+        "name": "Alex Zarb",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 93.81,
+            "penalty": 0
+          },
+          {
+            "time": 96.41,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 76,
+        "name": "Maddy Blacklock",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 90.79,
+            "penalty": 54
+          },
+          {
+            "time": 97.09,
+            "penalty": 2
+          }
+        ]
+      },
+      {
+        "bib": 18,
+        "name": "Helena Dore",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 109.35,
+            "penalty": 4
+          },
+          {
+            "time": 107.78,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 17,
+        "name": "Sophie Lennie",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 124.19,
+            "penalty": 4
+          },
+          {
+            "time": 119.97,
+            "penalty": 2
+          }
+        ]
+      },
+      {
+        "bib": 19,
+        "name": "Dominique Callaghan",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 138.6,
+            "penalty": 2
+          },
+          {
+            "time": 140.3,
+            "penalty": 2
+          }
+        ]
+      },
+      {
+        "bib": 11,
+        "name": "Olivia Giles",
+        "club": "WSWC",
+        "runs": [
+          {
+            "status": "DNF",
+            "penalty": 8
+          },
+          {
+            "status": "DNF",
+            "penalty": 114
+          }
+        ]
+      }
+    ],
+    "K1M": [
+      {
+        "bib": 1,
+        "name": "Timothy Anderson",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 65.61,
+            "penalty": 0
+          },
+          {
+            "time": 66.13,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 2,
+        "name": "Tom Billaut",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 73.32,
+            "penalty": 0
+          },
+          {
+            "time": 76.15,
+            "penalty": 6
+          }
+        ]
+      },
+      {
+        "bib": 3,
+        "name": "Chris Tubb",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 79.89,
+            "penalty": 0
+          },
+          {
+            "time": 79.48,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 7,
+        "name": "William Casserley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 83.97,
+            "penalty": 4
+          },
+          {
+            "time": 86.26,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 9,
+        "name": "Oliver Eisenhammer",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 92.26,
+            "penalty": 0
+          },
+          {
+            "time": 96.08,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 5,
+        "name": "Jye Deaves",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 105.13,
+            "penalty": 6
+          },
+          {
+            "time": 103.87,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 8,
+        "name": "Hugo Giles",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 107.22,
+            "penalty": 4
+          },
+          {
+            "time": 108.91,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 4,
+        "name": "Steven Molino",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 110.27,
+            "penalty": 4
+          },
+          {
+            "time": 102.65,
+            "penalty": 52
+          }
+        ]
+      },
+      {
+        "bib": 10,
+        "name": "Jonathon Dore",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 138.52,
+            "penalty": 8
+          },
+          {
+            "time": 127.98,
+            "penalty": 104
+          }
+        ]
+      },
+      {
+        "bib": 6,
+        "name": "Luca Herbert-Rice",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 201.23,
+            "penalty": 12
+          },
+          {
+            "time": 216.16,
+            "penalty": 16
+          }
+        ]
+      }
+    ],
+    "K1W": [
+      {
+        "bib": 12,
+        "name": "Lucy Casserley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 80.98,
+            "penalty": 2
+          },
+          {
+            "time": 82.72,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 98,
+        "name": "Lara Wiley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 82.88,
+            "penalty": 2
+          },
+          {
+            "time": 81.28,
+            "penalty": 2
+          }
+        ]
+      },
+      {
+        "bib": 13,
+        "name": "Georgia Rankin",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 88.0,
+            "penalty": 0
+          },
+          {
+            "time": 84.27,
+            "penalty": 2
+          }
+        ]
+      },
+      {
+        "bib": 71,
+        "name": "Alex Zarb",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 87.98,
+            "penalty": 0
+          },
+          {
+            "time": 87.63,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 76,
+        "name": "Maddy Blacklock",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 91.88,
+            "penalty": 2
+          },
+          {
+            "time": 91.12,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 18,
+        "name": "Helena Dore",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 97.49,
+            "penalty": 4
+          },
+          {
+            "time": 97.72,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 17,
+        "name": "Sophie Lennie",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 97.6,
+            "penalty": 2
+          },
+          {
+            "time": 95.53,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 19,
+        "name": "Dominique Callaghan",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 122.24,
+            "penalty": 2
+          },
+          {
+            "time": 121.96,
+            "penalty": 2
+          }
+        ]
+      },
+      {
+        "bib": 15,
+        "name": "Tracey Dearham",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 134.84,
+            "penalty": 4
+          },
+          {
+            "time": 129.52,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 14,
+        "name": "Eileen Callaghan",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 136.52,
+            "penalty": 0
+          },
+          {
+            "time": 134.55,
+            "penalty": 0
+          }
+        ]
+      },
+      {
+        "bib": 70,
+        "name": "Lauren Casserley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 197.38,
+            "penalty": 6
+          },
+          {
+            "time": 174.97,
+            "penalty": 4
+          }
+        ]
+      },
+      {
+        "bib": 99,
+        "name": "Jen Wiley",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 175.43,
+            "penalty": 14
+          },
+          {
+            "status": "DNS"
+          }
+        ]
+      },
+      {
+        "bib": 11,
+        "name": "Olivia Giles",
+        "club": "WSWC",
+        "runs": [
+          {
+            "time": 185.82,
+            "penalty": 8
+          },
+          {
+            "time": 172.3,
+            "penalty": 160
+          }
+        ]
+      },
+      {
+        "bib": 20,
+        "name": "Jelena Giles",
+        "club": "WSWC",
+        "runs": [
+          {
+            "status": "DNF",
+            "penalty": 2
+          },
+          {
+            "status": "DNF",
+            "penalty": 0
+          }
+        ]
+      }
+    ]
+  }
+}
