@@ -1,0 +1,12 @@
+version = 1
+revision = 3
+requires-python = ">=3.14"
+
+[options]
+exclude-newer = "2026-09-13T02:30:44.693235Z"
+exclude-newer-span = "P14D"
+
+[[package]]
+name = "penrith-cup"
+version = "0.1.0"
+source = { virtual = "." }

@@ -1,0 +1,6 @@
+[project]
+name = "penrith-cup"
+version = "0.1.0"
+description = "Penrith Cup canoe slalom series results and ranking points"
+requires-python = ">=3.14"
+dependencies = []

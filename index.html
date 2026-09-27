@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Penrith Cup Series</title>
+<style>
+  :root {
+    --accent: #1f6fd6;
+    --accent-soft: #e8f1fc;
+    --best: #fff4c2;
+    --border: #d9dee5;
+    --muted: #6b7280;
+    --text: #1f2933;
+    --bg: #ffffff;
+    --stripe: #f7f9fb;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    padding: 12px 16px 24px;
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+  }
+  h1 { font-size: 1.4rem; margin: 0; color: var(--accent); }
+  .season { color: var(--muted); margin: 2px 0 12px; }
+  .search {
+    width: 100%; max-width: 360px; padding: 8px 10px;
+    font: inherit; border: 1px solid var(--border); border-radius: 6px;
+  }
+  .search:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
+  .tabs button {
+    font: inherit; padding: 5px 11px; border: 1px solid var(--border); border-radius: 999px;
+    background: var(--bg); color: var(--text); cursor: pointer;
+  }
+  .tabs button small { color: var(--muted); margin-left: 4px; }
+  .tabs button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .tabs button[aria-pressed="true"] small { color: #dbe8fb; }
+  .tabs button:disabled { cursor: default; color: var(--muted); background: var(--stripe); }
+  .tabs.sub button { border-radius: 6px; padding: 4px 10px; }
+  .tabs.sub button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+  .race-info { margin: 14px 0 0; color: var(--muted); }
+  .race-info strong { color: var(--text); }
+  h2 { font-size: 1.05rem; margin: 18px 0 6px; }
+  .scroll { overflow-x: auto; margin-top: 10px; }
+  table { border-collapse: collapse; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  th, td { padding: 4px 8px; border-bottom: 1px solid var(--border); text-align: right; }
+  th { background: var(--accent-soft); font-weight: 600; font-size: 0.85rem; }
+  thead tr:first-child th[colspan] { border-left: 2px solid var(--bg); }
+  td.l, th.l { text-align: left; }
+  tbody tr:nth-child(even) td { background: var(--stripe); }
+  tbody tr td.best { background: var(--best); }
+  td.total { font-weight: 600; }
+  td.dim { color: var(--muted); }
+  .note, .empty { color: var(--muted); margin-top: 12px; }
+</style>
+</head>
+<body>
+<h1 id="title">Penrith Cup Series</h1>
+<p class="season" id="season"></p>
+<input class="search" id="search" type="search" placeholder="Search by name…" autocomplete="off" aria-label="Search by name">
+<nav class="tabs" id="views"></nav>
+<nav class="tabs sub" id="subs"></nav>
+<div id="content"><p class="note">Loading results…</p></div>
+
+<script>
+const DATA_DIR = '2026_2027/';
+const CLASSES = ['C1M', 'C1W', 'K1M', 'K1W'];
+const COMBINED = { Men: ['C1M', 'K1M'], Women: ['C1W', 'K1W'] };
+
+let series, points;
+const raceResults = {};
+const params = new URLSearchParams(location.search);
+const state = { view: params.get('view') || 'standings', sub: params.get('cls') || 'C1M', q: params.get('q') || '' };
+
+const norm = s => s.toLowerCase().split(/\s+/).filter(Boolean).join(' ');
+const fmt = hundredths => (hundredths / 100).toFixed(2);
+const shortDate = iso => new Date(iso + 'T00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+const longDate = iso => new Date(iso + 'T00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+function h(tag, attrs = {}, ...children) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'onclick') el.onclick = v;
+    else if (k.startsWith('aria-')) el.setAttribute(k, String(v));
+    else if (v !== false && v != null) el.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of children.flat()) if (c != null) el.append(c);
+  return el;
+}
+
+function assignRanks(sorted, key, set) {
+  let prev;
+  sorted.forEach((r, i) => {
+    const rank = i > 0 && key(r) === key(sorted[i - 1]) ? prev : i + 1;
+    set(r, rank);
+    prev = rank;
+  });
+}
+
+function rankLabel(rank, allRanks) {
+  if (rank == null) return '';
+  return allRanks.filter(r => r === rank).length > 1 ? `=${rank}` : String(rank);
+}
+
+function runTotal(run) {
+  return run.status ? null : Math.round((run.time + run.penalty) * 100);
+}
+
+function raceRows(entries) {
+  const rows = entries.map(p => {
+    const runs = [0, 1].map(i => p.runs[i] || { status: 'DNS' });
+    const totals = runs.map(runTotal);
+    const valid = totals.filter(t => t !== null);
+    return { p, runs, totals, best: valid.length ? Math.min(...valid) : null, runRanks: [null, null], rank: null };
+  });
+  for (const i of [0, 1]) {
+    const done = rows.filter(r => r.totals[i] !== null).sort((a, b) => a.totals[i] - b.totals[i]);
+    assignRanks(done, r => r.totals[i], (r, k) => { r.runRanks[i] = k; });
+  }
+  const ranked = rows.filter(r => r.best !== null).sort((a, b) => a.best - b.best);
+  assignRanks(ranked, r => r.best, (r, k) => { r.rank = k; });
+  return [...ranked, ...rows.filter(r => r.best === null)];
+}
+
+function racePoints(raceId, cls, name) {
+  const row = (points.classes[cls] || []).find(r => norm(r.name) === norm(name));
+  return row ? row.points[raceId] : undefined;
+}
+
+function raceTable(raceId, cls, match) {
+  const all = raceRows(raceResults[raceId].classes[cls] || []);
+  const rows = all.filter(r => match(r.p.name));
+  if (!rows.length) return null;
+  const winner = all[0] && all[0].best;
+  const ranks = all.map(r => r.rank);
+  const runRanks = [0, 1].map(i => all.map(r => r.runRanks[i]));
+
+  const runCells = (r, i) => {
+    const run = r.runs[i];
+    if (run.status) {
+      return [h('td', {}, run.status), h('td', { class: 'dim' }, run.penalty ?? ''), h('td'), h('td')];
+    }
+    const hl = r.totals.indexOf(r.best) === i ? 'best' : null;
+    return [
+      h('td', { class: hl }, run.time.toFixed(2)),
+      h('td', { class: hl }, String(run.penalty)),
+      h('td', { class: hl ? 'best total' : 'total' }, fmt(r.totals[i])),
+      h('td', { class: hl }, rankLabel(r.runRanks[i], runRanks[i])),
+    ];
+  };
+
+  return h('div', { class: 'scroll' }, h('table', {},
+    h('thead', {},
+      h('tr', {},
+        h('th', { rowspan: 2 }, 'Rk'), h('th', { rowspan: 2 }, 'Bib'),
+        h('th', { rowspan: 2, class: 'l' }, 'Name'), h('th', { rowspan: 2, class: 'l' }, 'Club'),
+        h('th', { colspan: 4 }, '1st Run'), h('th', { colspan: 4 }, '2nd Run'),
+        h('th', { rowspan: 2 }, 'Best'), h('th', { rowspan: 2 }, 'Behind'), h('th', { rowspan: 2 }, 'Points')),
+      h('tr', {}, ['Time', 'Pen', 'Total', 'Rk', 'Time', 'Pen', 'Total', 'Rk'].map(t => h('th', {}, t)))),
+    h('tbody', {}, rows.map(r => {
+      const pts = r.rank == null ? undefined : racePoints(raceId, cls, r.p.name);
+      return h('tr', {},
+        h('td', {}, rankLabel(r.rank, ranks)),
+        h('td', {}, String(r.p.bib)),
+        h('td', { class: 'l' }, r.p.name),
+        h('td', { class: 'l' }, r.p.club || ''),
+        runCells(r, 0), runCells(r, 1),
+        h('td', { class: 'total' }, r.best == null ? '' : fmt(r.best)),
+        h('td', {}, r.best == null ? '' : fmt(r.best - winner)),
+        h('td', { class: 'total' }, pts == null ? '' : String(pts)));
+    }))));
+}
+
+function standingsTable(rows, columns, cell, match) {
+  const shown = rows.filter(r => match(r.name));
+  if (!shown.length) return null;
+  const ranks = rows.map(r => r.rank);
+  return h('div', { class: 'scroll' }, h('table', {},
+    h('thead', {}, h('tr', {},
+      h('th', {}, 'Rank'), h('th', { class: 'l' }, 'Name'),
+      columns.map(c => h('th', {}, c)), h('th', {}, 'Total'))),
+    h('tbody', {}, shown.map(r => h('tr', {},
+      h('td', {}, rankLabel(r.rank, ranks)),
+      h('td', { class: 'l' }, r.name),
+      columns.map(c => { const v = cell(r, c); return h('td', { class: v == null ? 'dim' : null }, v == null ? '–' : String(v)); }),
+      h('td', { class: 'total' }, String(r.total)))))));
+}
+
+function sections() {
+  if (state.view === 'standings') {
+    return [
+      ...CLASSES.map(cls => ({
+        key: cls, title: cls,
+        build: m => standingsTable(points.classes[cls] || [], points.races, (r, race) => r.points[race], m),
+      })),
+      ...Object.entries(COMBINED).map(([group, classes]) => ({
+        key: group, title: `${group} combined`,
+        build: m => standingsTable(points.combined[group] || [], classes, (r, cls) => r.classes[cls], m),
+      })),
+    ];
+  }
+  return CLASSES.map(cls => ({ key: cls, title: cls, build: m => raceTable(state.view, cls, m) }));
+}
+
+function setState(changes) {
+  Object.assign(state, changes);
+  const p = new URLSearchParams();
+  if (state.view !== 'standings') p.set('view', state.view);
+  if (state.sub !== 'C1M') p.set('cls', state.sub);
+  if (state.q) p.set('q', state.q);
+  history.replaceState(null, '', p.toString() ? `?${p}` : location.pathname);
+  render();
+}
+
+function render() {
+  const views = document.getElementById('views');
+  views.replaceChildren(
+    h('button', { 'aria-pressed': state.view === 'standings', onclick: () => setState({ view: 'standings' }) }, 'Series standings'),
+    ...series.races.map(r => raceResults[r.id]
+      ? h('button', { 'aria-pressed': state.view === r.id, onclick: () => setState({ view: r.id }) }, r.id)
+      : h('button', { disabled: true, title: `${r.name} – ${longDate(r.date)}` }, r.id, h('small', {}, shortDate(r.date)))));
+
+  const secs = sections();
+  if (!secs.some(s => s.key === state.sub)) state.sub = secs[0].key;
+  const q = norm(state.q);
+  const match = name => !q || norm(name).includes(q);
+
+  const subs = document.getElementById('subs');
+  subs.hidden = !!q;
+  subs.replaceChildren(...secs.map(s =>
+    h('button', { 'aria-pressed': s.key === state.sub, onclick: () => setState({ sub: s.key }) }, s.title)));
+
+  const content = document.getElementById('content');
+  content.replaceChildren();
+
+  if (state.view === 'standings') {
+    const done = points.races.length;
+    content.append(h('p', { class: 'race-info' },
+      `Standings after ${done} of ${series.races.length} races. Each race awards up to 1000 points per class.`));
+  } else {
+    const race = series.races.find(r => r.id === state.view);
+    const res = raceResults[state.view];
+    content.append(h('p', { class: 'race-info' }, h('strong', {}, res.race), ` · ${longDate(race.date)} · ${res.venue}`));
+  }
+
+  if (q) {
+    const found = secs.map(s => [s, s.build(match)]).filter(([, el]) => el);
+    if (!found.length) content.append(h('p', { class: 'empty' }, `No paddlers matching “${state.q}”.`));
+    for (const [s, el] of found) content.append(h('h2', {}, s.title), el);
+  } else {
+    content.append(secs.find(s => s.key === state.sub).build(match) || h('p', { class: 'empty' }, 'No results.'));
+  }
+}
+
+async function main() {
+  const get = async file => {
+    const res = await fetch(DATA_DIR + file);
+    if (!res.ok) throw new Error(`${file}: HTTP ${res.status}`);
+    return res.json();
+  };
+  try {
+    series = await get('series.json');
+    points = await get('points.json');
+    await Promise.all(series.races.filter(r => r.results).map(async r => { raceResults[r.id] = await get(r.results); }));
+  } catch (err) {
+    document.getElementById('content').replaceChildren(
+      h('p', { class: 'empty' }, `Could not load results (${err.message}).`));
+    return;
+  }
+  if (state.view !== 'standings' && !raceResults[state.view]) state.view = 'standings';
+  document.getElementById('title').textContent = series.name;
+  document.getElementById('season').textContent = series.season;
+  const search = document.getElementById('search');
+  search.value = state.q;
+  search.addEventListener('input', () => setState({ q: search.value }));
+  render();
+}
+
+main();
+</script>
+</body>
+</html>

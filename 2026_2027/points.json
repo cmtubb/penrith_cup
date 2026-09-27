@@ -1,0 +1,497 @@
+{
+  "races": [
+    "PC1"
+  ],
+  "classes": {
+    "C1M": [
+      {
+        "name": "Tom Billaut",
+        "points": {
+          "PC1": 1000
+        },
+        "total": 1000,
+        "rank": 1
+      },
+      {
+        "name": "Timothy Anderson",
+        "points": {
+          "PC1": 800
+        },
+        "total": 800,
+        "rank": 2
+      },
+      {
+        "name": "William Casserley",
+        "points": {
+          "PC1": 600
+        },
+        "total": 600,
+        "rank": 3
+      },
+      {
+        "name": "Oliver Eisenhammer",
+        "points": {
+          "PC1": 400
+        },
+        "total": 400,
+        "rank": 4
+      },
+      {
+        "name": "Hugo Giles",
+        "points": {
+          "PC1": 200
+        },
+        "total": 200,
+        "rank": 5
+      }
+    ],
+    "C1W": [
+      {
+        "name": "Lucy Casserley",
+        "points": {
+          "PC1": 1000
+        },
+        "total": 1000,
+        "rank": 1
+      },
+      {
+        "name": "Lara Wiley",
+        "points": {
+          "PC1": 857
+        },
+        "total": 857,
+        "rank": 2
+      },
+      {
+        "name": "Alex Zarb",
+        "points": {
+          "PC1": 714
+        },
+        "total": 714,
+        "rank": 3
+      },
+      {
+        "name": "Maddy Blacklock",
+        "points": {
+          "PC1": 571
+        },
+        "total": 571,
+        "rank": 4
+      },
+      {
+        "name": "Helena Dore",
+        "points": {
+          "PC1": 429
+        },
+        "total": 429,
+        "rank": 5
+      },
+      {
+        "name": "Sophie Lennie",
+        "points": {
+          "PC1": 286
+        },
+        "total": 286,
+        "rank": 6
+      },
+      {
+        "name": "Dominique Callaghan",
+        "points": {
+          "PC1": 143
+        },
+        "total": 143,
+        "rank": 7
+      }
+    ],
+    "K1M": [
+      {
+        "name": "Timothy Anderson",
+        "points": {
+          "PC1": 1000
+        },
+        "total": 1000,
+        "rank": 1
+      },
+      {
+        "name": "Tom Billaut",
+        "points": {
+          "PC1": 900
+        },
+        "total": 900,
+        "rank": 2
+      },
+      {
+        "name": "Chris Tubb",
+        "points": {
+          "PC1": 800
+        },
+        "total": 800,
+        "rank": 3
+      },
+      {
+        "name": "William Casserley",
+        "points": {
+          "PC1": 700
+        },
+        "total": 700,
+        "rank": 4
+      },
+      {
+        "name": "Oliver Eisenhammer",
+        "points": {
+          "PC1": 600
+        },
+        "total": 600,
+        "rank": 5
+      },
+      {
+        "name": "Jye Deaves",
+        "points": {
+          "PC1": 500
+        },
+        "total": 500,
+        "rank": 6
+      },
+      {
+        "name": "Hugo Giles",
+        "points": {
+          "PC1": 400
+        },
+        "total": 400,
+        "rank": 7
+      },
+      {
+        "name": "Steven Molino",
+        "points": {
+          "PC1": 300
+        },
+        "total": 300,
+        "rank": 8
+      },
+      {
+        "name": "Jonathon Dore",
+        "points": {
+          "PC1": 200
+        },
+        "total": 200,
+        "rank": 9
+      },
+      {
+        "name": "Luca Herbert-Rice",
+        "points": {
+          "PC1": 100
+        },
+        "total": 100,
+        "rank": 10
+      }
+    ],
+    "K1W": [
+      {
+        "name": "Lucy Casserley",
+        "points": {
+          "PC1": 1000
+        },
+        "total": 1000,
+        "rank": 1
+      },
+      {
+        "name": "Lara Wiley",
+        "points": {
+          "PC1": 923
+        },
+        "total": 923,
+        "rank": 2
+      },
+      {
+        "name": "Georgia Rankin",
+        "points": {
+          "PC1": 846
+        },
+        "total": 846,
+        "rank": 3
+      },
+      {
+        "name": "Alex Zarb",
+        "points": {
+          "PC1": 769
+        },
+        "total": 769,
+        "rank": 4
+      },
+      {
+        "name": "Maddy Blacklock",
+        "points": {
+          "PC1": 692
+        },
+        "total": 692,
+        "rank": 5
+      },
+      {
+        "name": "Helena Dore",
+        "points": {
+          "PC1": 615
+        },
+        "total": 615,
+        "rank": 6
+      },
+      {
+        "name": "Sophie Lennie",
+        "points": {
+          "PC1": 538
+        },
+        "total": 538,
+        "rank": 7
+      },
+      {
+        "name": "Dominique Callaghan",
+        "points": {
+          "PC1": 462
+        },
+        "total": 462,
+        "rank": 8
+      },
+      {
+        "name": "Tracey Dearham",
+        "points": {
+          "PC1": 385
+        },
+        "total": 385,
+        "rank": 9
+      },
+      {
+        "name": "Eileen Callaghan",
+        "points": {
+          "PC1": 308
+        },
+        "total": 308,
+        "rank": 10
+      },
+      {
+        "name": "Lauren Casserley",
+        "points": {
+          "PC1": 231
+        },
+        "total": 231,
+        "rank": 11
+      },
+      {
+        "name": "Jen Wiley",
+        "points": {
+          "PC1": 154
+        },
+        "total": 154,
+        "rank": 12
+      },
+      {
+        "name": "Olivia Giles",
+        "points": {
+          "PC1": 77
+        },
+        "total": 77,
+        "rank": 13
+      }
+    ]
+  },
+  "combined": {
+    "Men": [
+      {
+        "name": "Tom Billaut",
+        "classes": {
+          "C1M": 1000,
+          "K1M": 900
+        },
+        "total": 950,
+        "rank": 1
+      },
+      {
+        "name": "Timothy Anderson",
+        "classes": {
+          "C1M": 800,
+          "K1M": 1000
+        },
+        "total": 900,
+        "rank": 2
+      },
+      {
+        "name": "William Casserley",
+        "classes": {
+          "C1M": 600,
+          "K1M": 700
+        },
+        "total": 650,
+        "rank": 3
+      },
+      {
+        "name": "Oliver Eisenhammer",
+        "classes": {
+          "C1M": 400,
+          "K1M": 600
+        },
+        "total": 500,
+        "rank": 4
+      },
+      {
+        "name": "Chris Tubb",
+        "classes": {
+          "K1M": 800
+        },
+        "total": 400,
+        "rank": 5
+      },
+      {
+        "name": "Hugo Giles",
+        "classes": {
+          "C1M": 200,
+          "K1M": 400
+        },
+        "total": 300,
+        "rank": 6
+      },
+      {
+        "name": "Jye Deaves",
+        "classes": {
+          "K1M": 500
+        },
+        "total": 250,
+        "rank": 7
+      },
+      {
+        "name": "Steven Molino",
+        "classes": {
+          "K1M": 300
+        },
+        "total": 150,
+        "rank": 8
+      },
+      {
+        "name": "Jonathon Dore",
+        "classes": {
+          "K1M": 200
+        },
+        "total": 100,
+        "rank": 9
+      },
+      {
+        "name": "Luca Herbert-Rice",
+        "classes": {
+          "K1M": 100
+        },
+        "total": 50,
+        "rank": 10
+      }
+    ],
+    "Women": [
+      {
+        "name": "Lucy Casserley",
+        "classes": {
+          "C1W": 1000,
+          "K1W": 1000
+        },
+        "total": 1000,
+        "rank": 1
+      },
+      {
+        "name": "Lara Wiley",
+        "classes": {
+          "C1W": 857,
+          "K1W": 923
+        },
+        "total": 890,
+        "rank": 2
+      },
+      {
+        "name": "Alex Zarb",
+        "classes": {
+          "C1W": 714,
+          "K1W": 769
+        },
+        "total": 742,
+        "rank": 3
+      },
+      {
+        "name": "Maddy Blacklock",
+        "classes": {
+          "C1W": 571,
+          "K1W": 692
+        },
+        "total": 632,
+        "rank": 4
+      },
+      {
+        "name": "Helena Dore",
+        "classes": {
+          "C1W": 429,
+          "K1W": 615
+        },
+        "total": 522,
+        "rank": 5
+      },
+      {
+        "name": "Georgia Rankin",
+        "classes": {
+          "K1W": 846
+        },
+        "total": 423,
+        "rank": 6
+      },
+      {
+        "name": "Sophie Lennie",
+        "classes": {
+          "C1W": 286,
+          "K1W": 538
+        },
+        "total": 412,
+        "rank": 7
+      },
+      {
+        "name": "Dominique Callaghan",
+        "classes": {
+          "C1W": 143,
+          "K1W": 462
+        },
+        "total": 303,
+        "rank": 8
+      },
+      {
+        "name": "Tracey Dearham",
+        "classes": {
+          "K1W": 385
+        },
+        "total": 193,
+        "rank": 9
+      },
+      {
+        "name": "Eileen Callaghan",
+        "classes": {
+          "K1W": 308
+        },
+        "total": 154,
+        "rank": 10
+      },
+      {
+        "name": "Lauren Casserley",
+        "classes": {
+          "K1W": 231
+        },
+        "total": 116,
+        "rank": 11
+      },
+      {
+        "name": "Jen Wiley",
+        "classes": {
+          "K1W": 154
+        },
+        "total": 77,
+        "rank": 12
+      },
+      {
+        "name": "Olivia Giles",
+        "classes": {
+          "K1W": 77
+        },
+        "total": 39,
+        "rank": 13
+      }
+    ]
+  }
+}
