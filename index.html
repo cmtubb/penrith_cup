@@ -56,6 +56,11 @@
   td.total { font-weight: 600; }
   td.dim { color: var(--muted); }
   .note, .empty { color: var(--muted); margin-top: 12px; }
+  .about { max-width: 680px; margin-top: 8px; }
+  .about h2 { margin-top: 20px; }
+  .about p, .about li { margin: 6px 0; }
+  .about ul { padding-left: 20px; }
+  .about code { background: var(--stripe); padding: 1px 4px; border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -65,6 +70,42 @@
 <nav class="tabs" id="views"></nav>
 <nav class="tabs sub" id="subs"></nav>
 <div id="content"><p class="note">Loading results…</p></div>
+
+<section class="about" id="about" hidden>
+  <h2>Race results</h2>
+  <p>Each paddler gets two runs. A run's total is its time plus penalty seconds. Your result is the better of your two run totals.</p>
+  <ul>
+    <li>Paddlers are ranked on their best total within each class (C1M, C1W, K1M, K1W).</li>
+    <li>A run marked <strong>DNF</strong> (did not finish) or <strong>DNS</strong> (did not start) has no total. If one run is complete, the other run counts.</li>
+    <li>If both runs are DNF or DNS, the paddler is listed at the bottom without a rank and gets no points.</li>
+    <li>Paddlers with exactly the same best total share the rank, shown as “=2”. The next place is skipped (1, =2, =2, 4).</li>
+    <li>The highlighted run is the one that counted. “Behind” is the gap to the winner's best total.</li>
+  </ul>
+
+  <h2>Race points</h2>
+  <p>In each class at each race, the winner gets 1000 points and every place after that gets an equal share less:</p>
+  <p><code>points = 1000 − (rank − 1) × 1000 ÷ N</code>, rounded to the nearest whole number.</p>
+  <ul>
+    <li><strong>N</strong> is the number of ranked paddlers in the class, with a minimum of 5, so small classes don't give away big gaps for single places. With 3 finishers, points are 1000, 800, 600. With 8 finishers they are 1000, 875, 750, 625, 500, 375, 250, 125.</li>
+    <li>Paddlers who share a rank also share its points.</li>
+    <li>Paddlers who are not ranked (both runs DNF/DNS) get 0 points and don't count towards N.</li>
+  </ul>
+
+  <h2>Series standings</h2>
+  <ul>
+    <li>Your series total in a class is the sum of your points from every race in that class. All races count.</li>
+    <li>Missing a race scores 0 for that race.</li>
+    <li>Paddlers with the same total share the rank.</li>
+  </ul>
+
+  <h2>Combined standings</h2>
+  <p>The men's (C1M + K1M) and women's (C1W + K1W) combined standings average the two class totals:</p>
+  <p><code>combined = (C1 total + K1 total) ÷ 2</code>, rounded to the nearest whole number.</p>
+  <p>If you only race one class, the other counts as 0, so paddling both classes is rewarded.</p>
+
+  <h2>When points are published</h2>
+  <p>Points are calculated once after each race and published with the results. Points for past races don't change when new results are added.</p>
+</section>
 
 <script>
 const DATA_DIR = '2026_2027/';
@@ -222,7 +263,16 @@ function render() {
     h('button', { 'aria-pressed': state.view === 'standings', onclick: () => setState({ view: 'standings' }) }, 'Series standings'),
     ...series.races.map(r => raceResults[r.id]
       ? h('button', { 'aria-pressed': state.view === r.id, onclick: () => setState({ view: r.id }) }, r.id)
-      : h('button', { disabled: true, title: `${r.name} – ${longDate(r.date)}` }, r.id, h('small', {}, shortDate(r.date)))));
+      : h('button', { disabled: true, title: `${r.name} – ${longDate(r.date)}` }, r.id, h('small', {}, shortDate(r.date)))),
+    h('button', { 'aria-pressed': state.view === 'about', onclick: () => setState({ view: 'about' }) }, 'How it works'));
+
+  const about = state.view === 'about';
+  document.getElementById('about').hidden = !about;
+  document.getElementById('content').hidden = about;
+  if (about) {
+    document.getElementById('subs').hidden = true;
+    return;
+  }
 
   const secs = sections();
   if (!secs.some(s => s.key === state.sub)) state.sub = secs[0].key;
@@ -271,12 +321,13 @@ async function main() {
       h('p', { class: 'empty' }, `Could not load results (${err.message}).`));
     return;
   }
-  if (state.view !== 'standings' && !raceResults[state.view]) state.view = 'standings';
+  if (!['standings', 'about'].includes(state.view) && !raceResults[state.view]) state.view = 'standings';
   document.getElementById('title').textContent = series.name;
   document.getElementById('season').textContent = series.season;
   const search = document.getElementById('search');
   search.value = state.q;
-  search.addEventListener('input', () => setState({ q: search.value }));
+  search.addEventListener('input', () =>
+    setState({ q: search.value, view: state.view === 'about' ? 'standings' : state.view }));
   render();
 }
 
