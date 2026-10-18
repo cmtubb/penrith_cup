@@ -3,7 +3,7 @@
   "season": "2026/2027",
   "races": [
     {"id": "PC1", "name": "Penrith Cup 1", "date": "2026-09-26", "results": "penrith_cup_race1.json"},
-    {"id": "PC2", "name": "Penrith Cup 2", "date": "2026-10-17", "results": null},
+    {"id": "PC2", "name": "Penrith Cup 2", "date": "2026-10-17", "results": "penrith_cup_race2.json"},
     {"id": "PC3", "name": "Penrith Cup 3", "date": "2026-11-21", "results": null},
     {"id": "PC4", "name": "Penrith Cup 4", "date": "2026-12-20", "results": null},
     {"id": "PC5", "name": "Penrith Cup 5", "date": "2027-03-14", "results": null},
