@@ -67,6 +67,7 @@
     border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text);
   }
   .narrow-only { display: none; }
+  .how-link { display: none; color: var(--accent); white-space: nowrap; }
 
   .m td, .m th { padding: 4px 3px; }
   .m td:first-child, .m th:first-child { padding-left: 5px; }
@@ -86,6 +87,7 @@
     .search { max-width: none; font-size: 16px; }
     .wide-only { display: none; }
     .narrow-only { display: block; }
+    .how-link { display: inline; }
     table { font-size: 13px; }
     table.m { font-size: 12px; }
   }
@@ -392,14 +394,20 @@ function render() {
   const content = document.getElementById('content');
   content.replaceChildren();
 
+  const howLink = h('a', {
+    href: '?view=about', class: 'how-link',
+    onclick: e => { e.preventDefault(); setState({ view: 'about' }); },
+  }, 'How it works');
+
   if (state.view === 'standings') {
     const done = points.races.length;
     content.append(h('p', { class: 'race-info' },
-      `Standings after ${done} of ${series.races.length} races. Each race awards up to 1000 points per class.`));
+      `Standings after ${done} of ${series.races.length} races. Each race awards up to 1000 points per class. `, howLink));
   } else {
     const race = series.races.find(r => r.id === state.view);
     const res = raceResults[state.view];
-    content.append(h('p', { class: 'race-info' }, h('strong', {}, res.race), ` · ${longDate(race.date)} · ${res.venue}`));
+    content.append(h('p', { class: 'race-info' },
+      h('strong', {}, res.race), ` · ${longDate(race.date)} · ${res.venue} `, howLink));
   }
 
   if (q) {
