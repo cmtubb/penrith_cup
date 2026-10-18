@@ -61,12 +61,47 @@
   .about p, .about li { margin: 6px 0; }
   .about ul { padding-left: 20px; }
   .about code { background: var(--stripe); padding: 1px 4px; border-radius: 3px; }
+  .pickers { display: none; gap: 8px; margin-top: 12px; }
+  .pickers select {
+    flex: 1; min-width: 0; padding: 8px; font: inherit; font-size: 16px;
+    border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text);
+  }
+  .narrow-only { display: none; }
+
+  .m td, .m th { padding: 4px 3px; }
+  .m td:first-child, .m th:first-child { padding-left: 5px; }
+  .m td:last-child, .m th:last-child { padding-right: 5px; }
+  .m td.name { white-space: normal; min-width: 5em; }
+  .m td.sub, .m td.behind { font-size: 0.85em; color: var(--muted); }
+  .m td.run { color: var(--muted); font-size: 0.8rem; text-align: center; }
+  .m tbody tr:first-child td:not([rowspan]) { border-bottom: none; }
+  .m tbody tr td { background: var(--bg); }
+  .m tbody:nth-of-type(even) td { background: var(--stripe); }
+  .m tbody td.best { background: var(--best); }
+
+  @media (max-width: 640px) {
+    body { padding-left: 12px; padding-right: 12px; }
+    .tabs { display: none; }
+    .pickers { display: flex; }
+    .search { max-width: none; font-size: 16px; }
+    .wide-only { display: none; }
+    .narrow-only { display: block; }
+    table { font-size: 13px; }
+    table.m { font-size: 12px; }
+  }
+  @media (max-width: 374px) {
+    table.m { font-size: 11px; }
+  }
 </style>
 </head>
 <body>
 <h1 id="title">Penrith Cup Series</h1>
 <p class="season" id="season"></p>
 <input class="search" id="search" type="search" placeholder="Search by name…" autocomplete="off" aria-label="Search by name">
+<div class="pickers">
+  <select id="view-select" aria-label="Results page"></select>
+  <select id="sub-select" aria-label="Class"></select>
+</div>
 <nav class="tabs" id="views"></nav>
 <nav class="tabs sub" id="subs"></nav>
 <div id="content"><p class="note">Loading results…</p></div>
@@ -110,12 +145,15 @@
 <script>
 const DATA_DIR = '2026_2027/';
 const CLASSES = ['C1M', 'C1W', 'K1M', 'K1W'];
-const COMBINED = { Men: ['C1M', 'K1M'], Women: ['C1W', 'K1W'] };
+const COMBINED = { Women: ['C1W', 'K1W'], Men: ['C1M', 'K1M'] };
 
 let series, points;
 const raceResults = {};
 const params = new URLSearchParams(location.search);
-const state = { view: params.get('view') || 'standings', sub: params.get('cls') || 'C1M', q: params.get('q') || '' };
+const pageKind = view => view === 'standings' ? 'standings' : 'race';
+// picks remembers the selected tab separately for the standings and the race pages
+const state = { view: params.get('view') || 'standings', picks: {}, q: params.get('q') || '' };
+if (params.get('cls')) state.picks[pageKind(state.view)] = params.get('cls');
 
 const norm = s => s.toLowerCase().split(/\s+/).filter(Boolean).join(' ');
 const fullName = p => `${p.firstname} ${p.surname}`;
@@ -196,7 +234,7 @@ function raceTable(raceId, cls, match) {
     ];
   };
 
-  return h('div', { class: 'scroll' }, h('table', {},
+  const wide = h('div', { class: 'scroll wide-only' }, h('table', {},
     h('thead', {},
       h('tr', {},
         h('th', { rowspan: 2 }, 'Rk'), h('th', { rowspan: 2 }, 'Bib'),
@@ -216,6 +254,38 @@ function raceTable(raceId, cls, match) {
         h('td', {}, r.best == null ? '' : fmt(r.best - winner)),
         h('td', { class: 'total' }, pts == null ? '' : String(pts)));
     }))));
+
+  const narrowRun = (r, i) => {
+    const run = r.runs[i];
+    if (run.status) return [h('td', {}, run.status), h('td', { class: 'dim' }, run.penalty ?? ''), h('td')];
+    const hl = r.totals.indexOf(r.best) === i ? 'best' : null;
+    return [
+      h('td', { class: hl }, run.time.toFixed(2)),
+      h('td', { class: hl }, String(run.penalty)),
+      h('td', { class: hl ? 'best total' : 'total' }, fmt(r.totals[i])),
+    ];
+  };
+
+  const narrow = h('div', { class: 'scroll narrow-only' }, h('table', { class: 'm' },
+    h('thead', {}, h('tr', {},
+      h('th', {}, 'Rk'), h('th', { class: 'l' }, 'Name'), h('th', { 'aria-label': 'Run' }),
+      ['Time', 'Pen', 'Total', 'Best', 'Pts'].map(t => h('th', {}, t)))),
+    rows.map(r => {
+      const pts = r.rank == null ? undefined : racePoints(raceId, cls, r.p);
+      return h('tbody', {},
+        h('tr', {},
+          h('td', { rowspan: 2 }, rankLabel(r.rank, ranks)),
+          h('td', { class: 'l name' }, fullName(r.p)),
+          h('td', { class: 'run' }, '1'), narrowRun(r, 0),
+          h('td', { class: 'total' }, r.best == null ? '' : fmt(r.best)),
+          h('td', { rowspan: 2, class: 'total' }, pts == null ? '' : String(pts))),
+        h('tr', {},
+          h('td', { class: 'l sub' }, [`#${r.p.bib}`, r.p.club].filter(Boolean).join(' · ')),
+          h('td', { class: 'run' }, '2'), narrowRun(r, 1),
+          h('td', { class: 'behind' }, r.best == null ? '' : `+${fmt(r.best - winner)}`)));
+    })));
+
+  return h('div', {}, wide, narrow);
 }
 
 function standingsTable(rows, columns, cell, match) {
@@ -236,27 +306,58 @@ function standingsTable(rows, columns, cell, match) {
 function sections() {
   if (state.view === 'standings') {
     return [
-      ...CLASSES.map(cls => ({
-        key: cls, title: cls,
-        build: m => standingsTable(points.classes[cls] || [], points.races, (r, race) => r.points[race], m),
-      })),
       ...Object.entries(COMBINED).map(([group, classes]) => ({
         key: group, title: `${group} combined`,
         build: m => standingsTable(points.combined[group] || [], classes, (r, cls) => r.classes[cls], m),
+      })),
+      ...CLASSES.map(cls => ({
+        key: cls, title: cls,
+        build: m => standingsTable(points.classes[cls] || [], points.races, (r, race) => r.points[race], m),
       })),
     ];
   }
   return CLASSES.map(cls => ({ key: cls, title: cls, build: m => raceTable(state.view, cls, m) }));
 }
 
+function currentSub(secs) {
+  const pick = state.picks[pageKind(state.view)];
+  return secs.some(s => s.key === pick) ? pick : secs[0].key;
+}
+
+function pickSub(key) {
+  setState({ picks: { ...state.picks, [pageKind(state.view)]: key } });
+}
+
 function setState(changes) {
   Object.assign(state, changes);
   const p = new URLSearchParams();
   if (state.view !== 'standings') p.set('view', state.view);
-  if (state.sub !== 'C1M') p.set('cls', state.sub);
+  if (state.view !== 'about') {
+    const secs = sections();
+    const sub = currentSub(secs);
+    if (sub !== secs[0].key) p.set('cls', sub);
+  }
   if (state.q) p.set('q', state.q);
   history.replaceState(null, '', p.toString() ? `?${p}` : location.pathname);
   render();
+}
+
+function renderPickers(secs, sub) {
+  const viewSelect = document.getElementById('view-select');
+  viewSelect.replaceChildren(
+    h('option', { value: 'standings' }, 'Series standings'),
+    ...series.races.map(r => raceResults[r.id]
+      ? h('option', { value: r.id }, `${r.id} · ${shortDate(r.date)}`)
+      : h('option', { value: r.id, disabled: true }, `${r.id} · ${shortDate(r.date)} (upcoming)`)),
+    h('option', { value: 'about' }, 'How it works'));
+  viewSelect.value = state.view;
+
+  const subSelect = document.getElementById('sub-select');
+  subSelect.hidden = !secs;
+  if (secs) {
+    subSelect.replaceChildren(...secs.map(s => h('option', { value: s.key }, s.title)));
+    subSelect.value = sub;
+  }
 }
 
 function render() {
@@ -273,18 +374,20 @@ function render() {
   document.getElementById('content').hidden = about;
   if (about) {
     document.getElementById('subs').hidden = true;
+    renderPickers(null);
     return;
   }
 
   const secs = sections();
-  if (!secs.some(s => s.key === state.sub)) state.sub = secs[0].key;
+  const sub = currentSub(secs);
   const q = norm(state.q);
   const match = name => !q || norm(name).includes(q);
 
   const subs = document.getElementById('subs');
   subs.hidden = !!q;
   subs.replaceChildren(...secs.map(s =>
-    h('button', { 'aria-pressed': s.key === state.sub, onclick: () => setState({ sub: s.key }) }, s.title)));
+    h('button', { 'aria-pressed': s.key === sub, onclick: () => pickSub(s.key) }, s.title)));
+  renderPickers(q ? null : secs, sub);
 
   const content = document.getElementById('content');
   content.replaceChildren();
@@ -304,7 +407,7 @@ function render() {
     if (!found.length) content.append(h('p', { class: 'empty' }, `No paddlers matching “${state.q}”.`));
     for (const [s, el] of found) content.append(h('h2', {}, s.title), el);
   } else {
-    content.append(secs.find(s => s.key === state.sub).build(match) || h('p', { class: 'empty' }, 'No results.'));
+    content.append(secs.find(s => s.key === sub).build(match) || h('p', { class: 'empty' }, 'No results.'));
   }
 }
 
@@ -330,6 +433,8 @@ async function main() {
   search.value = state.q;
   search.addEventListener('input', () =>
     setState({ q: search.value, view: state.view === 'about' ? 'standings' : state.view }));
+  document.getElementById('view-select').addEventListener('change', e => setState({ view: e.target.value }));
+  document.getElementById('sub-select').addEventListener('change', e => pickSub(e.target.value));
   render();
 }
 
