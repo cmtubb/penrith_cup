@@ -6,7 +6,8 @@
     "C1M": [
       {
         "bib": 41,
-        "name": "Tom Billaut",
+        "firstname": "Tom",
+        "surname": "BILLAUT",
         "club": "WSWC",
         "age_category": "U16",
         "runs": [
@@ -62,7 +63,8 @@
       },
       {
         "bib": 44,
-        "name": "William Casserley",
+        "firstname": "William",
+        "surname": "CASSERLEY",
         "club": "WSWC",
         "age_category": "U12",
         "runs": [
@@ -118,7 +120,8 @@
       },
       {
         "bib": 42,
-        "name": "Oliver Eisenhammer",
+        "firstname": "Oliver",
+        "surname": "EISENHAMMER",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -174,7 +177,8 @@
       },
       {
         "bib": 43,
-        "name": "Hugo Giles",
+        "firstname": "Hugo",
+        "surname": "GILES",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -232,7 +236,8 @@
     "C1W": [
       {
         "bib": 70,
-        "name": "Ada Mackie",
+        "firstname": "Ada",
+        "surname": "MACKIE",
         "club": "WSWC",
         "age_category": "U23",
         "runs": [
@@ -288,7 +293,8 @@
       },
       {
         "bib": 71,
-        "name": "Lucy Casserley",
+        "firstname": "Lucy",
+        "surname": "CASSERLEY",
         "club": "WSWC",
         "age_category": "U16",
         "runs": [
@@ -344,7 +350,8 @@
       },
       {
         "bib": 72,
-        "name": "Stella Davies",
+        "firstname": "Stella",
+        "surname": "DAVIES",
         "club": "WSWC",
         "age_category": "U16",
         "runs": [
@@ -400,7 +407,8 @@
       },
       {
         "bib": 74,
-        "name": "Helena Dore",
+        "firstname": "Helena",
+        "surname": "DORE",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -456,7 +464,8 @@
       },
       {
         "bib": 73,
-        "name": "Lilly Hendrie",
+        "firstname": "Lilly",
+        "surname": "HENDRIE",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -472,7 +481,8 @@
     "K1M": [
       {
         "bib": 10,
-        "name": "Benjamin Pope",
+        "firstname": "Benjamin",
+        "surname": "POPE",
         "club": "WSWC",
         "age_category": "Open",
         "runs": [
@@ -528,7 +538,8 @@
       },
       {
         "bib": 11,
-        "name": "Mark Crosbee",
+        "firstname": "Mark",
+        "surname": "CROSBEE",
         "club": "MCC",
         "age_category": "U23",
         "runs": [
@@ -584,7 +595,8 @@
       },
       {
         "bib": 14,
-        "name": "Tom Billaut",
+        "firstname": "Tom",
+        "surname": "BILLAUT",
         "club": "WSWC",
         "age_category": "U16",
         "runs": [
@@ -640,7 +652,8 @@
       },
       {
         "bib": 12,
-        "name": "Bradley Wood",
+        "firstname": "Bradley",
+        "surname": "WOOD",
         "club": "WSWC",
         "age_category": "U23",
         "runs": [
@@ -696,7 +709,8 @@
       },
       {
         "bib": 13,
-        "name": "Chris Tubb",
+        "firstname": "Chris",
+        "surname": "TUBB",
         "club": "WSWC",
         "age_category": "Veterans",
         "runs": [
@@ -752,7 +766,8 @@
       },
       {
         "bib": 19,
-        "name": "William Casserley",
+        "firstname": "William",
+        "surname": "CASSERLEY",
         "club": "WSWC",
         "age_category": "U12",
         "runs": [
@@ -808,7 +823,8 @@
       },
       {
         "bib": 17,
-        "name": "Oliver Eisenhammer",
+        "firstname": "Oliver",
+        "surname": "EISENHAMMER",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -864,7 +880,8 @@
       },
       {
         "bib": 15,
-        "name": "Kevin Songberg",
+        "firstname": "Kevin",
+        "surname": "SONGBERG",
         "club": "WSWC",
         "age_category": "Legends",
         "runs": [
@@ -920,7 +937,8 @@
       },
       {
         "bib": 18,
-        "name": "Hugo Giles",
+        "firstname": "Hugo",
+        "surname": "GILES",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -976,7 +994,8 @@
       },
       {
         "bib": 16,
-        "name": "Joel Tocanier",
+        "firstname": "Joel",
+        "surname": "TOCANIER",
         "club": "WSWC",
         "age_category": "Masters",
         "runs": [
@@ -1034,7 +1053,8 @@
     "K1W": [
       {
         "bib": 2,
-        "name": "Ada Mackie",
+        "firstname": "Ada",
+        "surname": "MACKIE",
         "club": "WSWC",
         "age_category": "U23",
         "runs": [
@@ -1090,7 +1110,8 @@
       },
       {
         "bib": 5,
-        "name": "Georgia Rankin",
+        "firstname": "Georgia",
+        "surname": "RANKIN",
         "club": "WSWC",
         "age_category": "Open",
         "runs": [
@@ -1146,7 +1167,8 @@
       },
       {
         "bib": 3,
-        "name": "Lucy Casserley",
+        "firstname": "Lucy",
+        "surname": "CASSERLEY",
         "club": "WSWC",
         "age_category": "U16",
         "runs": [
@@ -1202,7 +1224,8 @@
       },
       {
         "bib": 99,
-        "name": "Alex Zarb",
+        "firstname": "Alex",
+        "surname": "ZARB",
         "club": "WSWC",
         "age_category": "",
         "runs": [
@@ -1237,7 +1260,8 @@
       },
       {
         "bib": 7,
-        "name": "Sophie Lennie",
+        "firstname": "Sophie",
+        "surname": "LENNIE",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -1293,7 +1317,8 @@
       },
       {
         "bib": 4,
-        "name": "Stella Davies",
+        "firstname": "Stella",
+        "surname": "DAVIES",
         "club": "WSWC",
         "age_category": "U16",
         "runs": [
@@ -1349,7 +1374,8 @@
       },
       {
         "bib": 8,
-        "name": "Helena Dore",
+        "firstname": "Helena",
+        "surname": "DORE",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [
@@ -1405,7 +1431,8 @@
       },
       {
         "bib": 6,
-        "name": "Lilly Hendrie",
+        "firstname": "Lilly",
+        "surname": "HENDRIE",
         "club": "WSWC",
         "age_category": "U14",
         "runs": [

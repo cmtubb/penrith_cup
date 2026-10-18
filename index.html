@@ -118,6 +118,8 @@ const params = new URLSearchParams(location.search);
 const state = { view: params.get('view') || 'standings', sub: params.get('cls') || 'C1M', q: params.get('q') || '' };
 
 const norm = s => s.toLowerCase().split(/\s+/).filter(Boolean).join(' ');
+const fullName = p => `${p.firstname} ${p.surname}`;
+const samePerson = (a, b) => norm(a.firstname) === norm(b.firstname) && norm(a.surname) === norm(b.surname);
 const fmt = hundredths => (hundredths / 100).toFixed(2);
 const shortDate = iso => new Date(iso + 'T00:00').toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
 const longDate = iso => new Date(iso + 'T00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
@@ -167,14 +169,14 @@ function raceRows(entries) {
   return [...ranked, ...rows.filter(r => r.best === null)];
 }
 
-function racePoints(raceId, cls, name) {
-  const row = (points.classes[cls] || []).find(r => norm(r.name) === norm(name));
+function racePoints(raceId, cls, paddler) {
+  const row = (points.classes[cls] || []).find(r => samePerson(r, paddler));
   return row ? row.points[raceId] : undefined;
 }
 
 function raceTable(raceId, cls, match) {
   const all = raceRows(raceResults[raceId].classes[cls] || []);
-  const rows = all.filter(r => match(r.p.name));
+  const rows = all.filter(r => match(fullName(r.p)));
   if (!rows.length) return null;
   const winner = all[0] && all[0].best;
   const ranks = all.map(r => r.rank);
@@ -203,11 +205,11 @@ function raceTable(raceId, cls, match) {
         h('th', { rowspan: 2 }, 'Best'), h('th', { rowspan: 2 }, 'Behind'), h('th', { rowspan: 2 }, 'Points')),
       h('tr', {}, ['Time', 'Pen', 'Total', 'Rk', 'Time', 'Pen', 'Total', 'Rk'].map(t => h('th', {}, t)))),
     h('tbody', {}, rows.map(r => {
-      const pts = r.rank == null ? undefined : racePoints(raceId, cls, r.p.name);
+      const pts = r.rank == null ? undefined : racePoints(raceId, cls, r.p);
       return h('tr', {},
         h('td', {}, rankLabel(r.rank, ranks)),
         h('td', {}, String(r.p.bib)),
-        h('td', { class: 'l' }, r.p.name),
+        h('td', { class: 'l' }, fullName(r.p)),
         h('td', { class: 'l' }, r.p.club || ''),
         runCells(r, 0), runCells(r, 1),
         h('td', { class: 'total' }, r.best == null ? '' : fmt(r.best)),
@@ -217,7 +219,7 @@ function raceTable(raceId, cls, match) {
 }
 
 function standingsTable(rows, columns, cell, match) {
-  const shown = rows.filter(r => match(r.name));
+  const shown = rows.filter(r => match(fullName(r)));
   if (!shown.length) return null;
   const ranks = rows.map(r => r.rank);
   return h('div', { class: 'scroll' }, h('table', {},
@@ -226,7 +228,7 @@ function standingsTable(rows, columns, cell, match) {
       columns.map(c => h('th', {}, c)), h('th', {}, 'Total'))),
     h('tbody', {}, shown.map(r => h('tr', {},
       h('td', {}, rankLabel(r.rank, ranks)),
-      h('td', { class: 'l' }, r.name),
+      h('td', { class: 'l' }, fullName(r)),
       columns.map(c => { const v = cell(r, c); return h('td', { class: v == null ? 'dim' : null }, v == null ? '–' : String(v)); }),
       h('td', { class: 'total' }, String(r.total)))))));
 }

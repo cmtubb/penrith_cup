@@ -16,6 +16,14 @@ def normalise(name):
     return " ".join(name.lower().split())
 
 
+def person_key(p):
+    return normalise(p["firstname"]), normalise(p["surname"])
+
+
+def display_name(p):
+    return f"{p['firstname']} {p['surname']}"
+
+
 def round_half_up(x):
     return int(x + 0.5)
 
@@ -42,16 +50,16 @@ def best_total_hundredths(paddler):
 
 
 def race_points(entries):
-    """Return {normalised name: points} for one class of one race."""
-    ranked = [(best_total_hundredths(p), p["name"]) for p in entries]
-    ranked = sorted((t, name) for t, name in ranked if t is not None)
+    """Return {person key: points} for one class of one race."""
+    ranked = [(best_total_hundredths(p), person_key(p)) for p in entries]
+    ranked = sorted((t, key) for t, key in ranked if t is not None)
     n = max(MIN_N, len(ranked))
     ranks = competition_ranks([t for t, _ in ranked])
-    return {normalise(name): get_points(rank, n) for (_, name), rank in zip(ranked, ranks)}
+    return {key: get_points(rank, n) for (_, key), rank in zip(ranked, ranks)}
 
 
 def standings(rows, key):
-    rows.sort(key=lambda r: (-r[key], r["name"]))
+    rows.sort(key=lambda r: (-r[key], r["surname"], r["firstname"]))
     for row, rank in zip(rows, competition_ranks([-r[key] for r in rows])):
         row["rank"] = rank
     return rows
@@ -77,7 +85,7 @@ def check_names(display_names):
 
 def compute(series_dir, series):
     race_ids = []
-    display_names = {}
+    people = {}
     class_race_points = {cl: {} for cl in CLASSES}
 
     for race in series["races"]:
@@ -89,21 +97,21 @@ def compute(series_dir, series):
         for cl in CLASSES:
             entries = results["classes"].get(cl, [])
             for p in entries:
-                display_names.setdefault(normalise(p["name"]), p["name"])
+                people.setdefault(person_key(p), {"firstname": p["firstname"], "surname": p["surname"]})
             for key, pts in race_points(entries).items():
                 class_race_points[cl].setdefault(key, {})[race["id"]] = pts
 
-    check_names(display_names.values())
+    check_names(display_name(p) for p in people.values())
 
     classes = {}
     for cl in CLASSES:
         rows = [
-            {"name": display_names[key], "points": pts, "total": sum(pts.values())}
+            {**people[key], "points": pts, "total": sum(pts.values())}
             for key, pts in class_race_points[cl].items()
         ]
         classes[cl] = standings(rows, "total")
 
-    class_totals = {cl: {normalise(r["name"]): r["total"] for r in rows} for cl, rows in classes.items()}
+    class_totals = {cl: {person_key(r): r["total"] for r in rows} for cl, rows in classes.items()}
     combined = {}
     for group, cls in COMBINED.items():
         keys = {key for cl in cls for key in class_totals[cl]}
@@ -111,7 +119,7 @@ def compute(series_dir, series):
         for key in keys:
             per_class = {cl: class_totals[cl][key] for cl in cls if key in class_totals[cl]}
             total = round_half_up(sum(per_class.values()) / len(cls))
-            rows.append({"name": display_names[key], "classes": per_class, "total": total})
+            rows.append({**people[key], "classes": per_class, "total": total})
         combined[group] = standings(rows, "total")
 
     return {"races": race_ids, "classes": classes, "combined": combined}
@@ -120,12 +128,12 @@ def compute(series_dir, series):
 def published_changes(old, new):
     changes = []
     for cl, rows in old.get("classes", {}).items():
-        new_rows = {normalise(r["name"]): r["points"] for r in new["classes"].get(cl, [])}
+        new_rows = {person_key(r): r["points"] for r in new["classes"].get(cl, [])}
         for row in rows:
             for race_id, pts in row["points"].items():
-                new_pts = new_rows.get(normalise(row["name"]), {}).get(race_id)
+                new_pts = new_rows.get(person_key(row), {}).get(race_id)
                 if new_pts != pts:
-                    changes.append(f"{race_id} {cl} {row['name']}: {pts} -> {new_pts}")
+                    changes.append(f"{race_id} {cl} {display_name(row)}: {pts} -> {new_pts}")
     return changes
 
 
@@ -158,7 +166,7 @@ def main():
     for cl, rows in list(result["classes"].items()) + list(result["combined"].items()):
         print(f"== {cl}")
         for r in rows:
-            print(f"{r['rank']:3d}  {r['name']:25s} {r['total']:5d}")
+            print(f"{r['rank']:3d}  {display_name(r):25s} {r['total']:5d}")
     print(f"\nWrote {out_path}")
 
 

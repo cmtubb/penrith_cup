@@ -36,7 +36,7 @@ Only raw data is stored. Run totals, best times, ranks, time behind and points a
   "venue": "Penrith NSW",
   "classes": {
     "K1M": [
-      {"bib": 13, "name": "Chris Tubb", "club": "WSWC", "age_category": "Veterans",
+      {"bib": 13, "firstname": "Chris", "surname": "TUBB", "club": "WSWC", "age_category": "Veterans",
        "runs": [{"time": 97.57, "penalty": 0, "gates": [0, 0, 0, ...]},
                 {"time": 109.57, "penalty": 0, "gates": [0, 0, 0, ...]}]}
     ]
@@ -44,6 +44,7 @@ Only raw data is stored. Run totals, best times, ranks, time behind and points a
 }
 ```
 
+- `surname` is in capitals, as on SiWi start lists, so there's no question of how to capitalise names like McRAE. `firstname` uses normal capitalisation. The page shows names as "Chris TUBB".
 - `age_category` is one of `U12`, `U14`, `U16`, `U18`, `U23`, `Open`, `Masters`, `Veterans`, `Vintage` or `Legends`, from the start list. It is `""` when not known, and missing for PC1.
 - `gates` lists the penalty at each gate (0, 2 or 50) for a completed run, when known. It's missing for PC1. `penalty` is the sum of `gates`.
 - Bib numbers belong to an entry in one class, so the same paddler can have different bibs in different classes and races.
@@ -97,10 +98,10 @@ points = round_half_up(1000 − (rank − 1) × 1000 / N)
 
 ### Matching paddlers across races and classes
 
-Paddlers are matched by name, ignoring upper/lower case and extra spaces, so a name must be spelled the same way in every race. `do_ranking.py` warns about pairs of names that are close enough to be spelling variants. The check uses edit distance < 4, with a substitution counting as 2. For example:
+Paddlers are matched on `firstname` and `surname`, ignoring upper/lower case and extra spaces, so a name must be spelled the same way in every race. `do_ranking.py` warns about pairs of names that are close enough to be spelling variants. The check uses edit distance < 4, with a substitution counting as 2. For example:
 
 ```
-WARNING: possible duplicate names: 'Jonathon Dore' / 'Jonathan Dore'
+WARNING: possible duplicate names: 'Jonathan DORE' / 'Jonathon DORE'
 ```
 
 If the two names are the same person, correct the spelling in the race JSON and re-run.
@@ -122,11 +123,11 @@ Use `--force` only when a correction to published results is intended.
    ```
    uv run convert_race.py 2026_2027/raw_results/Penrith_Cup_2_Results.xlsm \
        2026_2027/raw_results/2026_penrith_cup2.xml 2026_2027/penrith_cup_race2.json \
-       --race "Penrith Cup 2 - Whitewater" --add "K1W,99,Alex Zarb,WSWC,"
+       --race "Penrith Cup 2 - Whitewater" --add "K1W,99,Alex,Zarb,WSWC,"
    ```
    - The script reads the spreadsheet's "Raw Timing" and "Penalties" sheets, not the class sheets.
    - A run with no start time is DNS. A run with a start time but no finish time is DNF.
-   - It stops if a run's gate penalties don't add up to its penalty total, or if a bib has times but isn't on the start list. Add missing paddlers with `--add CLASS,BIB,NAME,CLUB,CATEGORY`; the category can be blank.
+   - It stops if a run's gate penalties don't add up to its penalty total, or if a bib has times but isn't on the start list. Add missing paddlers with `--add CLASS,BIB,FIRSTNAME,SURNAME,CLUB,CATEGORY` (the surname is converted to capitals); the category can be blank.
    - Compare the JSON with the result PDFs before going further.
 2. Set that race's `"results"` in `series.json` to the new file name.
 3. Calculate points:

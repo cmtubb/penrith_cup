@@ -32,7 +32,8 @@ def read_start_list(xml_path):
         if code not in CATEGORY_CODES:
             sys.exit(f"Unknown age category code '{text(p, 'CatId')}'")
         paddlers[(cls, int(text(p, "EventBib")))] = {
-            "name": f"{text(p, 'GivenName')} {text(p, 'FamilyName').title()}",
+            "firstname": text(p, "GivenName"),
+            "surname": text(p, "FamilyName").upper(),
             "club": text(p, "Club"),
             "age_category": CATEGORY_CODES[code],
         }
@@ -92,14 +93,15 @@ def main():
     parser.add_argument("xml", help="SiWi XML export with the start list")
     parser.add_argument("output", help="Race results JSON file to write")
     parser.add_argument("--race", required=True, help='Race title, e.g. "Penrith Cup 2 - Whitewater"')
-    parser.add_argument("--add", action="append", default=[], metavar="CLASS,BIB,NAME,CLUB,CATEGORY",
+    parser.add_argument("--add", action="append", default=[], metavar="CLASS,BIB,FIRSTNAME,SURNAME,CLUB,CATEGORY",
                         help="A paddler missing from the start list (CATEGORY may be blank)")
     args = parser.parse_args()
 
     paddlers, date, venue = read_start_list(args.xml)
     for extra in args.add:
-        cls, bib, name, club, category = (s.strip() for s in extra.split(","))
-        paddlers[(cls, int(bib))] = {"name": name, "club": club, "age_category": category}
+        cls, bib, firstname, surname, club, category = (s.strip() for s in extra.split(","))
+        paddlers[(cls, int(bib))] = {"firstname": firstname, "surname": surname.upper(),
+                                     "club": club, "age_category": category}
 
     runs = read_runs(args.xlsm)
     for cls, bib, _ in runs:

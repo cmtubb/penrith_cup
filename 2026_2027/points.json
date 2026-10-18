@@ -6,7 +6,8 @@
   "classes": {
     "C1M": [
       {
-        "name": "Tom Billaut",
+        "firstname": "Tom",
+        "surname": "BILLAUT",
         "points": {
           "PC1": 1000,
           "PC2": 1000
@@ -15,7 +16,8 @@
         "rank": 1
       },
       {
-        "name": "William Casserley",
+        "firstname": "William",
+        "surname": "CASSERLEY",
         "points": {
           "PC1": 600,
           "PC2": 800
@@ -24,7 +26,8 @@
         "rank": 2
       },
       {
-        "name": "Oliver Eisenhammer",
+        "firstname": "Oliver",
+        "surname": "EISENHAMMER",
         "points": {
           "PC1": 400,
           "PC2": 600
@@ -33,7 +36,8 @@
         "rank": 3
       },
       {
-        "name": "Timothy Anderson",
+        "firstname": "Timothy",
+        "surname": "ANDERSON",
         "points": {
           "PC1": 800
         },
@@ -41,7 +45,8 @@
         "rank": 4
       },
       {
-        "name": "Hugo Giles",
+        "firstname": "Hugo",
+        "surname": "GILES",
         "points": {
           "PC1": 200,
           "PC2": 400
@@ -52,7 +57,8 @@
     ],
     "C1W": [
       {
-        "name": "Lucy Casserley",
+        "firstname": "Lucy",
+        "surname": "CASSERLEY",
         "points": {
           "PC1": 1000,
           "PC2": 800
@@ -61,7 +67,8 @@
         "rank": 1
       },
       {
-        "name": "Ada Mackie",
+        "firstname": "Ada",
+        "surname": "MACKIE",
         "points": {
           "PC2": 1000
         },
@@ -69,7 +76,8 @@
         "rank": 2
       },
       {
-        "name": "Lara Wiley",
+        "firstname": "Lara",
+        "surname": "WILEY",
         "points": {
           "PC1": 857
         },
@@ -77,7 +85,8 @@
         "rank": 3
       },
       {
-        "name": "Helena Dore",
+        "firstname": "Helena",
+        "surname": "DORE",
         "points": {
           "PC1": 429,
           "PC2": 400
@@ -86,7 +95,8 @@
         "rank": 4
       },
       {
-        "name": "Alex Zarb",
+        "firstname": "Alex",
+        "surname": "ZARB",
         "points": {
           "PC1": 714
         },
@@ -94,7 +104,8 @@
         "rank": 5
       },
       {
-        "name": "Stella Davies",
+        "firstname": "Stella",
+        "surname": "DAVIES",
         "points": {
           "PC2": 600
         },
@@ -102,7 +113,8 @@
         "rank": 6
       },
       {
-        "name": "Maddy Blacklock",
+        "firstname": "Maddy",
+        "surname": "BLACKLOCK",
         "points": {
           "PC1": 571
         },
@@ -110,7 +122,8 @@
         "rank": 7
       },
       {
-        "name": "Sophie Lennie",
+        "firstname": "Sophie",
+        "surname": "LENNIE",
         "points": {
           "PC1": 286
         },
@@ -118,7 +131,8 @@
         "rank": 8
       },
       {
-        "name": "Dominique Callaghan",
+        "firstname": "Dominique",
+        "surname": "CALLAGHAN",
         "points": {
           "PC1": 143
         },
@@ -128,7 +142,8 @@
     ],
     "K1M": [
       {
-        "name": "Tom Billaut",
+        "firstname": "Tom",
+        "surname": "BILLAUT",
         "points": {
           "PC1": 900,
           "PC2": 800
@@ -137,7 +152,8 @@
         "rank": 1
       },
       {
-        "name": "Chris Tubb",
+        "firstname": "Chris",
+        "surname": "TUBB",
         "points": {
           "PC1": 800,
           "PC2": 600
@@ -146,7 +162,8 @@
         "rank": 2
       },
       {
-        "name": "William Casserley",
+        "firstname": "William",
+        "surname": "CASSERLEY",
         "points": {
           "PC1": 700,
           "PC2": 500
@@ -155,15 +172,17 @@
         "rank": 3
       },
       {
-        "name": "Benjamin Pope",
+        "firstname": "Timothy",
+        "surname": "ANDERSON",
         "points": {
-          "PC2": 1000
+          "PC1": 1000
         },
         "total": 1000,
         "rank": 4
       },
       {
-        "name": "Oliver Eisenhammer",
+        "firstname": "Oliver",
+        "surname": "EISENHAMMER",
         "points": {
           "PC1": 600,
           "PC2": 400
@@ -172,15 +191,17 @@
         "rank": 4
       },
       {
-        "name": "Timothy Anderson",
+        "firstname": "Benjamin",
+        "surname": "POPE",
         "points": {
-          "PC1": 1000
+          "PC2": 1000
         },
         "total": 1000,
         "rank": 4
       },
       {
-        "name": "Mark Crosbee",
+        "firstname": "Mark",
+        "surname": "CROSBEE",
         "points": {
           "PC2": 900
         },
@@ -188,7 +209,8 @@
         "rank": 7
       },
       {
-        "name": "Bradley Wood",
+        "firstname": "Bradley",
+        "surname": "WOOD",
         "points": {
           "PC2": 700
         },
@@ -196,7 +218,8 @@
         "rank": 8
       },
       {
-        "name": "Hugo Giles",
+        "firstname": "Hugo",
+        "surname": "GILES",
         "points": {
           "PC1": 400,
           "PC2": 200
@@ -205,7 +228,8 @@
         "rank": 9
       },
       {
-        "name": "Jye Deaves",
+        "firstname": "Jye",
+        "surname": "DEAVES",
         "points": {
           "PC1": 500
         },
@@ -213,15 +237,8 @@
         "rank": 10
       },
       {
-        "name": "Kevin Songberg",
-        "points": {
-          "PC2": 300
-        },
-        "total": 300,
-        "rank": 11
-      },
-      {
-        "name": "Steven Molino",
+        "firstname": "Steven",
+        "surname": "MOLINO",
         "points": {
           "PC1": 300
         },
@@ -229,7 +246,17 @@
         "rank": 11
       },
       {
-        "name": "Jonathon Dore",
+        "firstname": "Kevin",
+        "surname": "SONGBERG",
+        "points": {
+          "PC2": 300
+        },
+        "total": 300,
+        "rank": 11
+      },
+      {
+        "firstname": "Jonathon",
+        "surname": "DORE",
         "points": {
           "PC1": 200
         },
@@ -237,17 +264,19 @@
         "rank": 13
       },
       {
-        "name": "Joel Tocanier",
+        "firstname": "Luca",
+        "surname": "HERBERT-RICE",
         "points": {
-          "PC2": 100
+          "PC1": 100
         },
         "total": 100,
         "rank": 14
       },
       {
-        "name": "Luca Herbert-Rice",
+        "firstname": "Joel",
+        "surname": "TOCANIER",
         "points": {
-          "PC1": 100
+          "PC2": 100
         },
         "total": 100,
         "rank": 14
@@ -255,7 +284,8 @@
     ],
     "K1W": [
       {
-        "name": "Lucy Casserley",
+        "firstname": "Lucy",
+        "surname": "CASSERLEY",
         "points": {
           "PC1": 1000,
           "PC2": 750
@@ -264,7 +294,8 @@
         "rank": 1
       },
       {
-        "name": "Georgia Rankin",
+        "firstname": "Georgia",
+        "surname": "RANKIN",
         "points": {
           "PC1": 846,
           "PC2": 875
@@ -273,7 +304,8 @@
         "rank": 2
       },
       {
-        "name": "Alex Zarb",
+        "firstname": "Alex",
+        "surname": "ZARB",
         "points": {
           "PC1": 769,
           "PC2": 625
@@ -282,7 +314,8 @@
         "rank": 3
       },
       {
-        "name": "Sophie Lennie",
+        "firstname": "Sophie",
+        "surname": "LENNIE",
         "points": {
           "PC1": 538,
           "PC2": 500
@@ -291,7 +324,8 @@
         "rank": 4
       },
       {
-        "name": "Ada Mackie",
+        "firstname": "Ada",
+        "surname": "MACKIE",
         "points": {
           "PC2": 1000
         },
@@ -299,7 +333,8 @@
         "rank": 5
       },
       {
-        "name": "Lara Wiley",
+        "firstname": "Lara",
+        "surname": "WILEY",
         "points": {
           "PC1": 923
         },
@@ -307,7 +342,8 @@
         "rank": 6
       },
       {
-        "name": "Helena Dore",
+        "firstname": "Helena",
+        "surname": "DORE",
         "points": {
           "PC1": 615,
           "PC2": 250
@@ -316,7 +352,8 @@
         "rank": 7
       },
       {
-        "name": "Maddy Blacklock",
+        "firstname": "Maddy",
+        "surname": "BLACKLOCK",
         "points": {
           "PC1": 692
         },
@@ -324,7 +361,8 @@
         "rank": 8
       },
       {
-        "name": "Dominique Callaghan",
+        "firstname": "Dominique",
+        "surname": "CALLAGHAN",
         "points": {
           "PC1": 462
         },
@@ -332,7 +370,8 @@
         "rank": 9
       },
       {
-        "name": "Tracey Dearham",
+        "firstname": "Tracey",
+        "surname": "DEARHAM",
         "points": {
           "PC1": 385
         },
@@ -340,7 +379,8 @@
         "rank": 10
       },
       {
-        "name": "Stella Davies",
+        "firstname": "Stella",
+        "surname": "DAVIES",
         "points": {
           "PC2": 375
         },
@@ -348,7 +388,8 @@
         "rank": 11
       },
       {
-        "name": "Eileen Callaghan",
+        "firstname": "Eileen",
+        "surname": "CALLAGHAN",
         "points": {
           "PC1": 308
         },
@@ -356,7 +397,8 @@
         "rank": 12
       },
       {
-        "name": "Lauren Casserley",
+        "firstname": "Lauren",
+        "surname": "CASSERLEY",
         "points": {
           "PC1": 231
         },
@@ -364,7 +406,8 @@
         "rank": 13
       },
       {
-        "name": "Jen Wiley",
+        "firstname": "Jen",
+        "surname": "WILEY",
         "points": {
           "PC1": 154
         },
@@ -372,7 +415,8 @@
         "rank": 14
       },
       {
-        "name": "Lilly Hendrie",
+        "firstname": "Lilly",
+        "surname": "HENDRIE",
         "points": {
           "PC2": 125
         },
@@ -380,7 +424,8 @@
         "rank": 15
       },
       {
-        "name": "Olivia Giles",
+        "firstname": "Olivia",
+        "surname": "GILES",
         "points": {
           "PC1": 77
         },
@@ -392,7 +437,8 @@
   "combined": {
     "Men": [
       {
-        "name": "Tom Billaut",
+        "firstname": "Tom",
+        "surname": "BILLAUT",
         "classes": {
           "C1M": 2000,
           "K1M": 1700
@@ -401,7 +447,8 @@
         "rank": 1
       },
       {
-        "name": "William Casserley",
+        "firstname": "William",
+        "surname": "CASSERLEY",
         "classes": {
           "C1M": 1400,
           "K1M": 1200
@@ -410,7 +457,8 @@
         "rank": 2
       },
       {
-        "name": "Oliver Eisenhammer",
+        "firstname": "Oliver",
+        "surname": "EISENHAMMER",
         "classes": {
           "C1M": 1000,
           "K1M": 1000
@@ -419,7 +467,8 @@
         "rank": 3
       },
       {
-        "name": "Timothy Anderson",
+        "firstname": "Timothy",
+        "surname": "ANDERSON",
         "classes": {
           "C1M": 800,
           "K1M": 1000
@@ -428,7 +477,8 @@
         "rank": 4
       },
       {
-        "name": "Chris Tubb",
+        "firstname": "Chris",
+        "surname": "TUBB",
         "classes": {
           "K1M": 1400
         },
@@ -436,7 +486,8 @@
         "rank": 5
       },
       {
-        "name": "Hugo Giles",
+        "firstname": "Hugo",
+        "surname": "GILES",
         "classes": {
           "C1M": 600,
           "K1M": 600
@@ -445,7 +496,8 @@
         "rank": 6
       },
       {
-        "name": "Benjamin Pope",
+        "firstname": "Benjamin",
+        "surname": "POPE",
         "classes": {
           "K1M": 1000
         },
@@ -453,7 +505,8 @@
         "rank": 7
       },
       {
-        "name": "Mark Crosbee",
+        "firstname": "Mark",
+        "surname": "CROSBEE",
         "classes": {
           "K1M": 900
         },
@@ -461,7 +514,8 @@
         "rank": 8
       },
       {
-        "name": "Bradley Wood",
+        "firstname": "Bradley",
+        "surname": "WOOD",
         "classes": {
           "K1M": 700
         },
@@ -469,7 +523,8 @@
         "rank": 9
       },
       {
-        "name": "Jye Deaves",
+        "firstname": "Jye",
+        "surname": "DEAVES",
         "classes": {
           "K1M": 500
         },
@@ -477,7 +532,8 @@
         "rank": 10
       },
       {
-        "name": "Kevin Songberg",
+        "firstname": "Steven",
+        "surname": "MOLINO",
         "classes": {
           "K1M": 300
         },
@@ -485,7 +541,8 @@
         "rank": 11
       },
       {
-        "name": "Steven Molino",
+        "firstname": "Kevin",
+        "surname": "SONGBERG",
         "classes": {
           "K1M": 300
         },
@@ -493,7 +550,8 @@
         "rank": 11
       },
       {
-        "name": "Jonathon Dore",
+        "firstname": "Jonathon",
+        "surname": "DORE",
         "classes": {
           "K1M": 200
         },
@@ -501,7 +559,8 @@
         "rank": 13
       },
       {
-        "name": "Joel Tocanier",
+        "firstname": "Luca",
+        "surname": "HERBERT-RICE",
         "classes": {
           "K1M": 100
         },
@@ -509,7 +568,8 @@
         "rank": 14
       },
       {
-        "name": "Luca Herbert-Rice",
+        "firstname": "Joel",
+        "surname": "TOCANIER",
         "classes": {
           "K1M": 100
         },
@@ -519,7 +579,8 @@
     ],
     "Women": [
       {
-        "name": "Lucy Casserley",
+        "firstname": "Lucy",
+        "surname": "CASSERLEY",
         "classes": {
           "C1W": 1800,
           "K1W": 1750
@@ -528,7 +589,8 @@
         "rank": 1
       },
       {
-        "name": "Alex Zarb",
+        "firstname": "Alex",
+        "surname": "ZARB",
         "classes": {
           "C1W": 714,
           "K1W": 1394
@@ -537,7 +599,8 @@
         "rank": 2
       },
       {
-        "name": "Ada Mackie",
+        "firstname": "Ada",
+        "surname": "MACKIE",
         "classes": {
           "C1W": 1000,
           "K1W": 1000
@@ -546,7 +609,8 @@
         "rank": 3
       },
       {
-        "name": "Lara Wiley",
+        "firstname": "Lara",
+        "surname": "WILEY",
         "classes": {
           "C1W": 857,
           "K1W": 923
@@ -555,7 +619,8 @@
         "rank": 4
       },
       {
-        "name": "Georgia Rankin",
+        "firstname": "Georgia",
+        "surname": "RANKIN",
         "classes": {
           "K1W": 1721
         },
@@ -563,7 +628,8 @@
         "rank": 5
       },
       {
-        "name": "Helena Dore",
+        "firstname": "Helena",
+        "surname": "DORE",
         "classes": {
           "C1W": 829,
           "K1W": 865
@@ -572,7 +638,8 @@
         "rank": 6
       },
       {
-        "name": "Sophie Lennie",
+        "firstname": "Sophie",
+        "surname": "LENNIE",
         "classes": {
           "C1W": 286,
           "K1W": 1038
@@ -581,7 +648,8 @@
         "rank": 7
       },
       {
-        "name": "Maddy Blacklock",
+        "firstname": "Maddy",
+        "surname": "BLACKLOCK",
         "classes": {
           "C1W": 571,
           "K1W": 692
@@ -590,7 +658,8 @@
         "rank": 8
       },
       {
-        "name": "Stella Davies",
+        "firstname": "Stella",
+        "surname": "DAVIES",
         "classes": {
           "C1W": 600,
           "K1W": 375
@@ -599,7 +668,8 @@
         "rank": 9
       },
       {
-        "name": "Dominique Callaghan",
+        "firstname": "Dominique",
+        "surname": "CALLAGHAN",
         "classes": {
           "C1W": 143,
           "K1W": 462
@@ -608,7 +678,8 @@
         "rank": 10
       },
       {
-        "name": "Tracey Dearham",
+        "firstname": "Tracey",
+        "surname": "DEARHAM",
         "classes": {
           "K1W": 385
         },
@@ -616,7 +687,8 @@
         "rank": 11
       },
       {
-        "name": "Eileen Callaghan",
+        "firstname": "Eileen",
+        "surname": "CALLAGHAN",
         "classes": {
           "K1W": 308
         },
@@ -624,7 +696,8 @@
         "rank": 12
       },
       {
-        "name": "Lauren Casserley",
+        "firstname": "Lauren",
+        "surname": "CASSERLEY",
         "classes": {
           "K1W": 231
         },
@@ -632,7 +705,8 @@
         "rank": 13
       },
       {
-        "name": "Jen Wiley",
+        "firstname": "Jen",
+        "surname": "WILEY",
         "classes": {
           "K1W": 154
         },
@@ -640,7 +714,8 @@
         "rank": 14
       },
       {
-        "name": "Lilly Hendrie",
+        "firstname": "Lilly",
+        "surname": "HENDRIE",
         "classes": {
           "K1W": 125
         },
@@ -648,7 +723,8 @@
         "rank": 15
       },
       {
-        "name": "Olivia Giles",
+        "firstname": "Olivia",
+        "surname": "GILES",
         "classes": {
           "K1W": 77
         },
